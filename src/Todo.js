@@ -1,9 +1,14 @@
 import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
 import { useState } from "react";
 import todo from "./store/todo";
 
 const Todo = observer(() => {
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    todo.fetchTodos();
+  }, []);
 
   return (
     <div>
@@ -17,8 +22,10 @@ const Todo = observer(() => {
         />
         <button
           onClick={() => {
+            const id = todo.todos[todo.todos.length - 1].id + 1;
+
             todo.addTodo({
-              id: todo.todos.length + 1,
+              id,
               title: value,
               completed: false,
             });

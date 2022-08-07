@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 
 class Todo {
-  todos = [{ id: 1, title: "First todo...", completed: false }];
+  todos = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -17,6 +17,14 @@ class Todo {
 
   completeTodo(todo) {
     todo.completed = !todo.completed;
+  }
+
+  fetchTodos() {
+    fetch("https://jsonplaceholder.typicode.com/todos")
+      .then((response) => response.json())
+      .then((json) => {
+        this.todos.push(...json);
+      });
   }
 }
 
