@@ -46,7 +46,7 @@ const Todo = observer(() => {
                   todo.removeTodo(el.id);
                 }}
               >
-                remove todo
+                x
               </button>
             </li>
           );
