@@ -4,7 +4,8 @@ import counter from "./store/counter";
 const Counter = observer(() => {
   return (
     <div>
-      <h1>{counter.count}</h1>
+      <h1>{counter.total}</h1>
+      <h3>Count: {counter.count}</h3>
 
       <div>
         <button
